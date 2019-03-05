@@ -8,5 +8,8 @@
     "restart": "nodemon server.js"
   },
   "author": "Frances Yu",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
