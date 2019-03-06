@@ -8,6 +8,8 @@ const dbConfig = config["mongodb"];
 const port = dbConfig.port;
 const dbName = dbConfig.dbName;
 
+const configCollectionName = dbConfig.collections.config;
+
 const connectDatabase = () => {
 
     return new Promise((resolve, reject) => {
@@ -32,6 +34,19 @@ const connectDatabase = () => {
     });
 }
 
+const getGoogleApiKey = async () => {
+
+    const dbObj = await connectDatabase();
+    const configCollection = dbObj.database.collection(configCollectionName);
+
+    const doc = await configCollection.findOne();
+
+    dbObj.client.close();
+
+    return doc["google_api_key"];
+}
+
 module.exports = {
-    connectDatabase
+    connectDatabase,
+    getGoogleApiKey
 }

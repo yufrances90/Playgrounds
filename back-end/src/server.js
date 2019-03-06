@@ -2,10 +2,11 @@ const express = require('express');
 const app = express()
 
 const utils = require('./utils/index');
+const services = require('./services/main');
 
 const port = utils.configUtils.getServerPort();
 
-app.get('/', (req, res) => res.send(utils.msgUtils.getMessage("hello_world")))
+app.get('/', (req, res) => res.send(utils.msgUtils.getMessage("hello_world")));
 
 app.get('/testingDb', (req, res) => {
 
@@ -21,6 +22,11 @@ app.get('/testingDb', (req, res) => {
     });
 
     res.send(utils.msgUtils.getMessage("db_testing"));
-})
+});
 
-app.listen(port, () => console.log(`Listening on port ${port}!`))
+app.get('/testingGetAPIKey', (req, res) => {
+    
+    services.getGoogleApiKey();
+});
+
+app.listen(port, () => console.log(`Listening on port ${port}!`));
