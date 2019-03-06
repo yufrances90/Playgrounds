@@ -10,15 +10,25 @@ const dbName = dbConfig.dbName;
 
 const connectDatabase = () => {
 
-    MongoClient.connect(
-        `mongodb://localhost:${port}`, 
-        (err, client) => {
+    return new Promise((resolve, reject) => {
+        MongoClient.connect(
+            `mongodb://localhost:${port}`, 
+            (err, client) => {
+    
+                if(err) {
 
-            if(err) {
-                console.log(`Error[${msg.errors['db_connection'].uuid}]`, err);
-            }
+                    console.log(`Error[${msg.errors['db_connection'].uuid}]`, err);
 
-            const db = client.db(dbName);
+                    reject(err);
+                }
+
+                const dbObject = {
+                    client,
+                    database: client.db(dbName)
+                }
+                
+                resolve(dbObject);
+        });
     });
 }
 

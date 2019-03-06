@@ -6,6 +6,7 @@
         }
     },
     "messages": {
+        "hello_world": "Hello World!",
         "db_testing": "Testing database connection..."
     }
 }
