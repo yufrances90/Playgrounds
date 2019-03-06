@@ -25,8 +25,10 @@ app.get('/testingDb', (req, res) => {
 });
 
 app.get('/testingGetAPIKey', (req, res) => {
+
+    const address = "1600 Amphitheatre Parkway, Mountain View, CA";
     
-    services.getGoogleApiKey();
+    services.getGoogleApiKey(address);
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
