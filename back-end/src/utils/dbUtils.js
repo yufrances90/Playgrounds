@@ -34,7 +34,7 @@ const connectDatabase = () => {
     });
 }
 
-const getGoogleApiKey = async () => {
+const getApiKey = async (key) => {
 
     const dbObj = await connectDatabase();
     const configCollection = dbObj.database.collection(configCollectionName);
@@ -43,10 +43,10 @@ const getGoogleApiKey = async () => {
 
     dbObj.client.close();
 
-    return doc["google_api_key"];
+    return doc[key];
 }
 
 module.exports = {
     connectDatabase,
-    getGoogleApiKey
+    getApiKey
 }

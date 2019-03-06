@@ -24,11 +24,25 @@ app.get('/testingDb', (req, res) => {
     res.send(utils.msgUtils.getMessage("db_testing"));
 });
 
-app.get('/testingGetAPIKey', (req, res) => {
+app.get('/testingGoogleGeolocationAPI', (req, res) => {
 
     const address = "1600 Amphitheatre Parkway, Mountain View, CA";
     
-    services.getGoogleApiKey(address);
+    services.fetchCoordinatesByAddress(address);
+
+    res.send(utils.msgUtils.getMessage("google_geolocation_api_testing"));
+});
+
+app.get('/testingOpenWeatherAPI', (req, res) => {
+
+    const coords = {
+        lon: 139,
+        lat: 35
+    }
+
+    services.fetchCurrentWeatherData(coords);
+
+    res.send(utils.msgUtils.getMessage("open_weather_api_testing"));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));

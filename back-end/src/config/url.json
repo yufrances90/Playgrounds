@@ -1,3 +1,7 @@
 {
-    "geocode_base_url": "https://maps.googleapis.com/maps/api/geocode"
+    "geocode_base_url": "https://maps.googleapis.com/maps/api/geocode",
+    "open_weather_base_url": {
+        "current": "https://api.openweathermap.org/data/2.5/weather",
+        "historical": "http://history.openweathermap.org/data/2.5/history/city"
+    }
 }
