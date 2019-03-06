@@ -1,0 +1,13 @@
+{
+    "server": {
+        "port": 8000,
+        "hostname": "127.0.0.1"
+    },
+    "mongodb": {
+        "port": "27017",
+        "dbName": "appDb",
+        "collections": {
+            "config": "Config"
+        }
+    }
+}

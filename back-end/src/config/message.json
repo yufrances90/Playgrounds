@@ -1,0 +1,11 @@
+{
+    "errors": {
+        "db_connection": {
+            "uuid": "PLError001",
+            "description": "DB Connection Failure"
+        }
+    },
+    "messages": {
+        "db_testing": "Testing database connection..."
+    }
+}
