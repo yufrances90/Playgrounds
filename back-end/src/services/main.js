@@ -38,7 +38,28 @@ const fetchCurrentWeatherData = async ({lon, lat}) => {
     });
 }
 
+const fetchHistoricalWeatherData = async ({ lon, lat, start, cnt=undefined, end=undefined }) => {
+
+    const historicalWeatherBaseUri = utils.urlUtils.getUrl("open_weather_base_url.historical");
+    const key = await utils.dbUtils.getApiKey("open_weather_api_key");
+
+    let url = `${historicalWeatherBaseUri}?lat=${lat}&lon=${lon}&type=hour&start=${start}`;
+
+    url = (cnt === undefined)? url + `&end=${end}` : url + `&cnt=${cnt}`;
+
+    url += `&appid=${key}`;
+
+    axios.get(url)
+    .then(response => {
+        console.log(JSON.stringify(response.data));
+    })
+    .catch(error => {
+        console.log(error);
+    });
+}
+
 module.exports = {
     fetchCoordinatesByAddress,
-    fetchCurrentWeatherData
+    fetchCurrentWeatherData,
+    fetchHistoricalWeatherData
 }

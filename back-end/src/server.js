@@ -38,7 +38,16 @@ app.get('/testingOpenWeatherAPI', (req, res) => {
     const coords = {
         lon: 139,
         lat: 35
-    }
+    };
+
+    const params = {
+        ...coords,
+        start: 1551398400,
+        cnt: 24,
+        end: undefined
+    };
+
+    services.fetchHistoricalWeatherData(params);
 
     services.fetchCurrentWeatherData(coords);
 
