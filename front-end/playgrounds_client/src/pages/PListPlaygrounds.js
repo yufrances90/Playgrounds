@@ -13,7 +13,8 @@ import {
 class PListPlaygrounds extends Component {
 
     state = {
-        playgrounds: []
+        playgrounds: [],
+        selectedId: undefined
     }
 
     async componentDidMount() {
@@ -25,9 +26,15 @@ class PListPlaygrounds extends Component {
         });
     }
 
+    setSelectedId(id) {
+        this.setState({
+            selectedId: id
+        });
+    }
+
     render() {
 
-        const { playgrounds } = this.state;
+        const { playgrounds, selectedId } = this.state;
 
         if (playgrounds.length === 0) {
             return <LinearProgress />
@@ -36,8 +43,10 @@ class PListPlaygrounds extends Component {
         return (
             <div>
                 <CListPlaygrounds
-                    playgrounds={playgrounds} 
+                    playgrounds={playgrounds}
+                    setSelectedId={this.setSelectedId.bind(this)} 
                 />
+                {selectedId && <span>Selected ID: {this.state.selectedId}</span>}
             </div>
         );
     }

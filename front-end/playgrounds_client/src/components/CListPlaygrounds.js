@@ -9,7 +9,7 @@ import CPList from './CPList';
 class CListPlaygrounds extends Component {
     render() {
 
-        const { playgrounds } = this.props;
+        const { playgrounds, setSelectedId } = this.props;
 
         return (
             <div>
@@ -17,6 +17,7 @@ class CListPlaygrounds extends Component {
                     <Grid item xs={4}>
                         <CPList 
                             playgrounds={playgrounds}
+                            setSelectedId={setSelectedId}
                         />
                     </Grid>
                     <Grid item xs={8}>
