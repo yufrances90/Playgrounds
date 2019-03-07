@@ -107,11 +107,24 @@ const getAllPlaygrounds = async () => {
     }
 }
 
+const getPlaygroundById = async (id) => {
+
+    try {
+
+        const response = await utils.dbUtils.getPlaygroundById(id);
+
+        return response;
+    } catch(err) {
+        throw err;
+    }
+}
+
 module.exports = {
     fetchCoordinatesByAddress,
     fetchCurrentWeatherData,
     fetchHistoricalWeatherData,
     getGoogleApiKey,
     createNewPlayground,
-    getAllPlaygrounds
+    getAllPlaygrounds,
+    getPlaygroundById
 }

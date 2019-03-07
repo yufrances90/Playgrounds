@@ -103,4 +103,15 @@ app.get('/getAll', (req, res) => {
     });
 });
 
+app.get('/getById', (req, res) => {
+
+    const { id } = req.query;
+
+    services.getPlaygroundById(id).then(result => {
+        res.status(200).send(JSON.stringify(result));
+    }).catch(err => {
+        res.status(500).send(JSON.stringify(err));
+    });
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}!`));

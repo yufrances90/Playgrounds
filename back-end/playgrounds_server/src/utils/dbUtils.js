@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const ObjectID = require('mongodb').ObjectID;
 
 const config = require('../config/config.json');
 const msg = require('../config/message.json');
@@ -75,9 +76,27 @@ const getAllPlaygrounds = async () => {
     }
 }
 
+const getPlaygroundById = async (id) => {
+
+    try {
+
+        const dbObj = await connectDatabase();
+        const playgroundCollection = dbObj.database.collection(playgroundCollectionName);
+
+        const response = await playgroundCollection.findOne({
+            _id: ObjectID(id)
+        });
+
+        return response;
+    } catch(err) {
+        throw err;
+    }
+}
+
 module.exports = {
     connectDatabase,
     getApiKey,
     saveNewPlayground,
-    getAllPlaygrounds
+    getAllPlaygrounds,
+    getPlaygroundById
 }
