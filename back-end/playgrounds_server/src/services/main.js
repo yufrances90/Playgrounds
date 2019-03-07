@@ -81,7 +81,15 @@ const createNewPlayground = async ({ address, name }) => {
 
         const coords = response.results[0].geometry.location;
 
-        console.log(coords);
+        const newPlayground = {
+            name,
+            address,
+            coords
+        };
+
+        await utils.dbUtils.saveNewPlayground(newPlayground);
+
+        return coords;
     } catch(err) {
         throw err;
     }

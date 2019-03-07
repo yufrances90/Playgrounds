@@ -9,6 +9,7 @@ const port = dbConfig.port;
 const dbName = dbConfig.dbName;
 
 const configCollectionName = dbConfig.collections.config;
+const playgroundCollectionName = dbConfig.collections.playgrounds;
 
 const connectDatabase = () => {
 
@@ -46,7 +47,21 @@ const getApiKey = async (key) => {
     return doc[key];
 }
 
+const saveNewPlayground = async (newPlayground) => {
+
+    const dbObj = await connectDatabase();
+    const playgroundCollection = dbObj.database.collection(playgroundCollectionName);
+
+    playgroundCollection.insertOne(newPlayground, (err, res) => {
+
+        if(err) throw err;
+
+        dbObj.client.close();
+    });
+}
+
 module.exports = {
     connectDatabase,
-    getApiKey
+    getApiKey,
+    saveNewPlayground
 }
