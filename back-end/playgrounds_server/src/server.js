@@ -76,4 +76,13 @@ app.get('/geocodingByAddress', (req, res) => {
     });
 });
 
+app.get('/googleKey', (req, res) => {
+
+    services.getGoogleApiKey().then(result => {
+        res.status(200).send(JSON.stringify(result));
+    }).catch(err => {
+        res.status(500).send(JSON.stringify(err));
+    })
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}!`));

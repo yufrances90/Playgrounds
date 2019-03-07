@@ -19,7 +19,7 @@ const fetchCoordinatesByAddress = async (address) => {
 
         return response.data;
     } catch(err) {
-        return err
+        throw err
     }
 }
 
@@ -59,8 +59,23 @@ const fetchHistoricalWeatherData = async ({ lon, lat, start, cnt=undefined, end=
     });
 }
 
+const getGoogleApiKey = async () => {
+
+    try {
+
+        const google_api_key = await utils.dbUtils.getApiKey("google_api_key");
+
+        return {
+            google_api_key
+        };
+    } catch(err) {
+        throw err;
+    }
+}
+
 module.exports = {
     fetchCoordinatesByAddress,
     fetchCurrentWeatherData,
-    fetchHistoricalWeatherData
+    fetchHistoricalWeatherData,
+    getGoogleApiKey
 }
