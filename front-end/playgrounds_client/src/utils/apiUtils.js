@@ -17,3 +17,12 @@ export const getCoordinatesByAddress = async (address) => {
 
     console.log(response);
 }
+
+export const createNewPlayground = async (address, name) => {
+
+    const url = `${baseUrl}/create?address=${address}&name=${name}`;
+
+    const response = await axios.get(url);
+
+    console.log(response);
+}

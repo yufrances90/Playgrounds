@@ -73,9 +73,24 @@ const getGoogleApiKey = async () => {
     }
 }
 
+const createNewPlayground = async ({ address, name }) => {
+
+    try {
+        
+        const response = await fetchCoordinatesByAddress(address);
+
+        const coords = response.results[0].geometry.location;
+
+        console.log(coords);
+    } catch(err) {
+        throw err;
+    }
+}
+
 module.exports = {
     fetchCoordinatesByAddress,
     fetchCurrentWeatherData,
     fetchHistoricalWeatherData,
-    getGoogleApiKey
+    getGoogleApiKey,
+    createNewPlayground
 }

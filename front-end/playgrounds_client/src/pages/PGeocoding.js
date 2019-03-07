@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import CGeocoding from '../components/CGeocoding';
 
 import {
-    getCoordinatesByAddress
+    createNewPlayground
 } from '../utils/apiUtils'
 
 class PGeocoding extends Component {
@@ -26,6 +26,7 @@ class PGeocoding extends Component {
     handleSubmitForm(event) {
         
         const {
+            name,
             streetNumber,
             street,
             city,
@@ -37,7 +38,7 @@ class PGeocoding extends Component {
 
         console.log(address);
 
-        getCoordinatesByAddress(address);
+        createNewPlayground(address, name);
     }
 
     render() {

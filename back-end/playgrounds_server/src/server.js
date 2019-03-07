@@ -85,4 +85,9 @@ app.get('/googleKey', (req, res) => {
     })
 });
 
+app.get('/create', (req, res) => {
+
+    services.createNewPlayground(req.query);
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}!`));
