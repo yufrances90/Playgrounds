@@ -9,6 +9,7 @@ import './App.css';
 
 import CNavbar from './components/CNavbar';
 import PNewPlayground from './pages/PNewPlayground';
+import PListPlaygrounds from './pages/PListPlaygrounds';
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
                 <CNavbar />
                 <div className="body">
                     <Switch>
+                        <Route exact path="/" component={PListPlaygrounds} />
                         <Route path="/create" component={PNewPlayground} />
                     </Switch>
                 </div>
