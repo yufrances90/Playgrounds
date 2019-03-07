@@ -5,7 +5,8 @@ import {
     Divider
 } from '@material-ui/core';
 import {
-    LocationCity
+    LocationCity,
+    LocationOn
 } from '@material-ui/icons';
 
 class CPlayground extends Component {
@@ -21,6 +22,9 @@ class CPlayground extends Component {
                 <Divider />
                 <p>
                     <LocationCity /> {selectedPlayground.address}
+                </p>
+                <p>
+                    <LocationOn /> Longitude: {selectedPlayground.coords.lng}, Latitude: {selectedPlayground.coords.lat}
                 </p>
             </div>
         );
