@@ -5,3 +5,15 @@
 .app-navbar {
     background-color: black !important;
 }
+
+.links {
+    margin-left: 1em;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: inherit;
+    margin-right: 0.5em;
+}
