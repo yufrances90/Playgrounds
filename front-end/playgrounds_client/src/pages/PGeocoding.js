@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 import CGeocoding from '../components/CGeocoding';
 
+import {
+    getCoordinatesByAddress
+} from '../utils/apiUtils'
+
 class PGeocoding extends Component {
 
     state = {
@@ -22,7 +26,6 @@ class PGeocoding extends Component {
     handleSubmitForm(event) {
         
         const {
-            name,
             streetNumber,
             street,
             city,
@@ -30,9 +33,11 @@ class PGeocoding extends Component {
             country
         } = this.state;
 
-        const address = `${name}, ${streetNumber} ${street}, ${city}, ${stateS}, ${country}`;
+        const address = `${streetNumber} ${street}, ${city}, ${stateS}, ${country}`;
 
         console.log(address);
+
+        getCoordinatesByAddress(address);
     }
 
     render() {

@@ -13,13 +13,14 @@ const fetchCoordinatesByAddress = async (address) => {
 
     const url = `${geocodeBaseUri}/${format}?address=${encodedAddress}&key=${key}`;
 
-    axios.get(url)
-    .then(response => {
-        console.log(JSON.stringify(response.data));
-    })
-    .catch(error => {
-        console.log(error);
-    });
+    try {
+
+        const response = await axios.get(url);
+
+        return response.data;
+    } catch(err) {
+        return err
+    }
 }
 
 const fetchCurrentWeatherData = async ({lon, lat}) => {

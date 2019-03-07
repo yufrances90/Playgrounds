@@ -37,9 +37,11 @@ app.get('/testingGoogleGeolocationAPI', (req, res) => {
 
     const address = "1600 Amphitheatre Parkway, Mountain View, CA";
     
-    services.fetchCoordinatesByAddress(address);
-
-    res.send(utils.msgUtils.getMessage("google_geolocation_api_testing"));
+    services.fetchCoordinatesByAddress(address).then(result => {
+        res.status(200).send(JSON.stringify(result));
+    }).catch(err => {
+        res.status(500).send(JSON.stringify(err));
+    });
 });
 
 app.get('/testingOpenWeatherAPI', (req, res) => {
@@ -61,6 +63,17 @@ app.get('/testingOpenWeatherAPI', (req, res) => {
     services.fetchCurrentWeatherData(coords);
 
     res.send(utils.msgUtils.getMessage("open_weather_api_testing"));
+});
+
+app.get('/geocodingByAddress', (req, res) => {
+
+    const { address } = req.query;
+
+    services.fetchCoordinatesByAddress(address).then(result => {
+        res.status(200).send(JSON.stringify(result));
+    }).catch(err => {
+        res.status(500).send(JSON.stringify(err));
+    });
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
