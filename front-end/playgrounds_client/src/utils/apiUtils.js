@@ -18,6 +18,7 @@ export const getCoordinatesByAddress = async (address) => {
     console.log(response);
 }
 
+/** TODO: Rewrite using POST method */
 export const createNewPlayground = async (address, name) => {
 
     const url = `${baseUrl}/create?address=${address}&name=${name}`;
@@ -25,4 +26,17 @@ export const createNewPlayground = async (address, name) => {
     const response = await axios.get(url);
 
     console.log(response);
+}
+
+export const getAllPlaygrounds = async () => {
+
+    const url = `${baseUrl}/getAll`;
+
+    const response = await axios.get(url);
+
+    if(response.status === 200) {
+        return response.data;
+    } else {
+        return null;
+    }
 }
