@@ -7,14 +7,15 @@ import {
 import CListPlaygrounds from '../components/CListPlaygrounds';
 
 import {
-    getAllPlaygrounds
+    getAllPlaygrounds,
+    getPlaygroundById
 } from '../utils/apiUtils';
 
 class PListPlaygrounds extends Component {
 
     state = {
         playgrounds: [],
-        selectedId: undefined
+        selectedPlayground: undefined
     }
 
     async componentDidMount() {
@@ -26,15 +27,18 @@ class PListPlaygrounds extends Component {
         });
     }
 
-    setSelectedId(id) {
+    async setSelectedPlayground(id) {
+
+        const response = await getPlaygroundById(id);
+
         this.setState({
-            selectedId: id
+            selectedPlayground: response
         });
     }
 
     render() {
 
-        const { playgrounds, selectedId } = this.state;
+        const { playgrounds, selectedPlayground } = this.state;
 
         if (playgrounds.length === 0) {
             return <LinearProgress />
@@ -44,9 +48,10 @@ class PListPlaygrounds extends Component {
             <div>
                 <CListPlaygrounds
                     playgrounds={playgrounds}
-                    setSelectedId={this.setSelectedId.bind(this)} 
+                    setSelectedPlayground={this.setSelectedPlayground.bind(this)} 
+                    selectedPlayground={selectedPlayground}
                 />
-                {selectedId && <span>Selected ID: {this.state.selectedId}</span>}
+                
             </div>
         );
     }

@@ -40,3 +40,17 @@ export const getAllPlaygrounds = async () => {
         return null;
     }
 }
+
+export const getPlaygroundById = async (id) => {
+
+    const url = `${baseUrl}/getById?id=${id}`;
+
+    const response = await axios.get(url);
+
+    if(response.status === 200) {
+        return response.data;
+    } else {
+        console.log(response);
+        return null;
+    }
+}

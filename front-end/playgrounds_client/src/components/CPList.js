@@ -9,7 +9,7 @@ import {
 class CPList extends Component {
 
     handleItemSelected(event, id) {
-        this.props.setSelectedId(id);
+        this.props.setSelectedPlayground(id);
     }
 
     render() {

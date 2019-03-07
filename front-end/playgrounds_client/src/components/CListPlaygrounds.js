@@ -5,11 +5,16 @@ import {
 } from '@material-ui/core';
 
 import CPList from './CPList';
+import CPlayground from './CPlayground';
 
 class CListPlaygrounds extends Component {
     render() {
 
-        const { playgrounds, setSelectedId } = this.props;
+        const { 
+            playgrounds, 
+            setSelectedPlayground, 
+            selectedPlayground
+        } = this.props;
 
         return (
             <div>
@@ -17,10 +22,16 @@ class CListPlaygrounds extends Component {
                     <Grid item xs={4}>
                         <CPList 
                             playgrounds={playgrounds}
-                            setSelectedId={setSelectedId}
+                            setSelectedPlayground={setSelectedPlayground}
                         />
                     </Grid>
                     <Grid item xs={8}>
+                        {
+                            selectedPlayground && 
+                            <CPlayground
+                                selectedPlayground={selectedPlayground} 
+                            />
+                        }
                     </Grid>
                 </Grid>
             </div>
