@@ -6,7 +6,7 @@ import {
 
 import CAddressForm from './CAddressForm';
 
-class CGeocoding extends Component {
+class CNewPlayground extends Component {
     render() {
 
         const {
@@ -41,4 +41,4 @@ class CGeocoding extends Component {
     }
 }
 
-export default CGeocoding;
+export default CNewPlayground;

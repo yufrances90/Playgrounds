@@ -8,7 +8,7 @@ import {
 import './App.css';
 
 import CNavbar from './components/CNavbar';
-import PGeocoding from './pages/PGeocoding';
+import PNewPlayground from './pages/PNewPlayground';
 
 class App extends Component {
 
@@ -18,7 +18,7 @@ class App extends Component {
                 <CNavbar />
                 <div className="body">
                     <Switch>
-                        <Route path="/create" component={PGeocoding} />
+                        <Route path="/create" component={PNewPlayground} />
                     </Switch>
                 </div>
             </div>

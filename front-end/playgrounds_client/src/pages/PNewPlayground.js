@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import CGeocoding from '../components/CGeocoding';
+import CNewPlayGround from '../components/CNewPlayGround';
 
 import {
     createNewPlayground
 } from '../utils/apiUtils'
 
-class PGeocoding extends Component {
+class PNewPlayground extends Component {
 
     state = {
         name: '',
@@ -54,7 +54,7 @@ class PGeocoding extends Component {
 
         return (
             <div>
-                <CGeocoding 
+                <CNewPlayGround 
                     name={name}
                     streetNumber={streetNumber}
                     street={street}
@@ -69,4 +69,4 @@ class PGeocoding extends Component {
     }
 }
 
-export default PGeocoding;
+export default PNewPlayground;
