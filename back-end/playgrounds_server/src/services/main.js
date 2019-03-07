@@ -95,10 +95,23 @@ const createNewPlayground = async ({ address, name }) => {
     }
 }
 
+const getAllPlaygrounds = async () => {
+
+    try {
+
+        const response = await utils.dbUtils.getAllPlaygrounds();
+
+        return response;
+    } catch(err) {
+        throw err;
+    }
+}
+
 module.exports = {
     fetchCoordinatesByAddress,
     fetchCurrentWeatherData,
     fetchHistoricalWeatherData,
     getGoogleApiKey,
-    createNewPlayground
+    createNewPlayground,
+    getAllPlaygrounds
 }

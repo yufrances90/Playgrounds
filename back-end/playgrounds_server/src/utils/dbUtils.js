@@ -60,8 +60,24 @@ const saveNewPlayground = async (newPlayground) => {
     });
 }
 
+const getAllPlaygrounds = async () => {
+
+    try {
+
+        const dbObj = await connectDatabase();
+        const playgroundCollection = dbObj.database.collection(playgroundCollectionName);
+
+        const response = await playgroundCollection.find({}).toArray();
+
+        return response;
+    } catch(err) {
+        throw err;
+    }
+}
+
 module.exports = {
     connectDatabase,
     getApiKey,
-    saveNewPlayground
+    saveNewPlayground,
+    getAllPlaygrounds
 }
