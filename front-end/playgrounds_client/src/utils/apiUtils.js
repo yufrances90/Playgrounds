@@ -1,5 +1,9 @@
 import * as axios from 'axios';
 
+import {
+    handleResponse
+} from './helpers';
+
 const baseUrl = "http://localhost:8000";
 
 export const getResponseFromServer = async () => {
@@ -27,11 +31,7 @@ export const createNewPlayground = async (address, name) => {
         name
     });
 
-    if(response.status === 200) {
-        return response.data;
-    } else {
-        return null;
-    }
+    handleResponse(response);
 }
 
 export const getAllPlaygrounds = async () => {
@@ -40,11 +40,7 @@ export const getAllPlaygrounds = async () => {
 
     const response = await axios.get(url);
 
-    if(response.status === 200) {
-        return response.data;
-    } else {
-        return null;
-    }
+    handleResponse(response);
 }
 
 export const getPlaygroundById = async (id) => {
@@ -53,14 +49,7 @@ export const getPlaygroundById = async (id) => {
 
     const response = await axios.get(url);
 
-    if(response.status === 200) {
-        return response.data;
-    } else {
-
-        console.log(response);
-        
-        return null;
-    }
+    handleResponse(response);
 }
 
 export const updatePlaygroundById = async (reqObj) => {
@@ -69,5 +58,5 @@ export const updatePlaygroundById = async (reqObj) => {
 
     const response = await axios.put(url, reqObj);
 
-    console.log(response);
+    handleResponse(response);
 }
