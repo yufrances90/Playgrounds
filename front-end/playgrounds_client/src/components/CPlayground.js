@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 import {
     Typography,
     Divider,
-    Button
+    Button,
+    Tooltip
 } from '@material-ui/core';
 import {
     LocationCity,
     LocationOn,
-    Edit,
+    EditLocation,
     Delete
 } from '@material-ui/icons';
 
@@ -58,21 +59,25 @@ class CPlayground extends Component {
                 </div>
                 <Divider />
                 <div className="button-grp">
-                    <Button 
-                        variant="outlined" 
-                        color="primary"
-                        onClick={this.handleClickOpen.bind(this)}
-                    >
-                        <Edit /> Edit
-                    </Button>
+                    <Tooltip title="Edit Playground Info">
+                        <Button 
+                            variant="outlined" 
+                            color="primary"
+                            onClick={this.handleClickOpen.bind(this)}
+                        >
+                            <EditLocation /> 
+                        </Button>
+                    </Tooltip>
                     <span>  </span>
-                    <Button 
-                        variant="outlined" 
-                        color="secondary"
-                        onClick={handleDeletePlayground}
-                    >
-                        <Delete /> Delete
-                    </Button>
+                    <Tooltip title="Delete Playground">
+                        <Button 
+                            variant="outlined" 
+                            color="secondary"
+                            onClick={handleDeletePlayground}
+                        >
+                            <Delete /> 
+                        </Button>
+                    </Tooltip>
                 </div>
                 <CAddressModal 
                     open={open}

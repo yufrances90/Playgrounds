@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import {
     AppBar,
     Toolbar,
-    Typography
+    Typography,
+    Tooltip
 } from '@material-ui/core';
 import {
-    Create,
+    AddLocation,
     List
 } from '@material-ui/icons';
 
@@ -28,14 +29,18 @@ class CNavbar extends Component {
                         </Link>
                         <span className="links"> 
                             <Link to="/create" className="navbar-link">
-                                <Typography color="inherit" variant="button">
-                                    <Create /> Create
-                                </Typography>
+                                <Tooltip title="Add New Location">
+                                    <Typography color="inherit" variant="button">
+                                        <AddLocation /> 
+                                    </Typography>
+                                </Tooltip>
                             </Link>
                             <Link to="/" className="navbar-link">
-                                <Typography color="inherit" variant="button">
-                                    <List /> View List
-                                </Typography>
+                                <Tooltip title="View List of Locations">
+                                    <Typography color="inherit" variant="button">
+                                        <List /> 
+                                    </Typography>
+                                </Tooltip>
                             </Link>
                         </span>
                     </Toolbar>
