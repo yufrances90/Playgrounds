@@ -45,14 +45,24 @@ class PListPlaygrounds extends Component {
          * type
          *  0: name change
          *  1: address change
+         *  2: nothing change
          */
-        console.log(type);
+        if (type === 2) {
+            return;
+        }
 
-        const { name } = obj;
+        const { name, id } = obj;
 
         const address = formatAddress(obj);
 
-        console.log(address);
+        const reqObj = {
+            id,
+            name,
+            address,
+            type
+        };
+
+        console.log(reqObj);
     }
 
     render() {

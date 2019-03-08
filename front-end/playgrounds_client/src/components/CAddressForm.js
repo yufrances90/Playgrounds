@@ -17,7 +17,8 @@ class CAddressForm extends Component {
         city: '',
         stateS: '',
         country: '',
-        type: -1
+        type: -1,
+        id: undefined
     }
 
     processAddressStr(address) {
@@ -49,7 +50,7 @@ class CAddressForm extends Component {
 
         if(playground !== undefined) {
 
-            const { name, address } = playground;
+            const { name, address, _id } = playground;
 
             const addressInfo = this.processAddressStr(address);
 
@@ -68,7 +69,8 @@ class CAddressForm extends Component {
                 city,
                 stateS,
                 country,
-                type: 2
+                type: 2,
+                id: _id
             });
         }
     }
