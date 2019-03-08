@@ -40,7 +40,7 @@ export const getAllPlaygrounds = async () => {
 
     const response = await axios.get(url);
 
-    handleResponse(response);
+    return handleResponse(response);
 }
 
 export const getPlaygroundById = async (id) => {
@@ -49,7 +49,7 @@ export const getPlaygroundById = async (id) => {
 
     const response = await axios.get(url);
 
-    handleResponse(response);
+    return handleResponse(response);
 }
 
 export const updatePlaygroundById = async (reqObj) => {
