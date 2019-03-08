@@ -8,22 +8,7 @@ import {
 
 class PNewPlayground extends Component {
 
-    state = {
-        name: '',
-        streetNumber: '',
-        street: '',
-        city: '',
-        stateS: '',
-        country: ''
-    }
-
-    handleChangeValue(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
-
-    handleSubmitForm(event) {
+    handleSubmitForm(obj) {
         
         const {
             name,
@@ -32,7 +17,7 @@ class PNewPlayground extends Component {
             city,
             stateS,
             country
-        } = this.state;
+        } = obj;
 
         const address = `${streetNumber} ${street}, ${city}, ${stateS}, ${country}`;
 
@@ -43,25 +28,9 @@ class PNewPlayground extends Component {
 
     render() {
 
-        const {
-            name,
-            streetNumber,
-            street,
-            city,
-            stateS,
-            country
-        } = this.state;
-
         return (
             <div>
-                <CNewPlayGround 
-                    name={name}
-                    streetNumber={streetNumber}
-                    street={street}
-                    city={city}
-                    stateS={stateS}
-                    country={country}
-                    handleChangeValue={this.handleChangeValue.bind(this)}
+                <CNewPlayGround
                     handleSubmitForm={this.handleSubmitForm.bind(this)}
                 />
             </div>

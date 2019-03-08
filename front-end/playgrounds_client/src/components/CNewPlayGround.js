@@ -10,13 +10,6 @@ class CNewPlayground extends Component {
     render() {
 
         const {
-            name,
-            streetNumber,
-            street,
-            city,
-            stateS,
-            country,
-            handleChangeValue,
             handleSubmitForm
         } = this.props;
 
@@ -24,14 +17,7 @@ class CNewPlayground extends Component {
             <div>
                 <Grid container>
                     <Grid item xs={4}>
-                        <CAddressForm 
-                            name={name}
-                            streetNumber={streetNumber}
-                            street={street}
-                            city={city}
-                            stateS={stateS}
-                            country={country}
-                            handleChangeValue={handleChangeValue}
+                        <CAddressForm
                             handleSubmitForm={handleSubmitForm}
                         />
                     </Grid>

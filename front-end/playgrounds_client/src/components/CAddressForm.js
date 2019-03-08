@@ -10,6 +10,28 @@ import {
 
 class CAddressForm extends Component {
 
+    state = {
+        name: '',
+        streetNumber: '',
+        street: '',
+        city: '',
+        stateS: '',
+        country: ''
+    }
+
+    handleChangeValue(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+    handleSubmitBtnClick(event) {
+
+        const obj = this.state;
+
+        this.props.handleSubmitForm(obj);
+    }
+
     render() {
 
         const {
@@ -19,9 +41,7 @@ class CAddressForm extends Component {
             city,
             stateS,
             country,
-            handleChangeValue,
-            handleSubmitForm
-        } = this.props;
+        } = this.state;
 
         return (
             <form className="address-form">
@@ -32,7 +52,7 @@ class CAddressForm extends Component {
                     variant="outlined"
                     fullWidth
                     value={name}
-                    onChange={handleChangeValue}
+                    onChange={this.handleChangeValue.bind(this)}
                 />
                 <br />
                 <br />
@@ -43,7 +63,7 @@ class CAddressForm extends Component {
                     variant="outlined"
                     fullWidth
                     value={streetNumber}
-                    onChange={handleChangeValue}
+                    onChange={this.handleChangeValue.bind(this)}
                 />
                 <br />
                 <br />
@@ -54,7 +74,7 @@ class CAddressForm extends Component {
                     variant="outlined"
                     fullWidth
                     value={street}
-                    onChange={handleChangeValue}
+                    onChange={this.handleChangeValue.bind(this)}
                 />
                 <br />
                 <br />
@@ -65,7 +85,7 @@ class CAddressForm extends Component {
                     variant="outlined"
                     fullWidth
                     value={city}
-                    onChange={handleChangeValue}
+                    onChange={this.handleChangeValue.bind(this)}
                 />
                 <br />
                 <br />
@@ -76,7 +96,7 @@ class CAddressForm extends Component {
                     variant="outlined"
                     fullWidth
                     value={stateS}
-                    onChange={handleChangeValue}
+                    onChange={this.handleChangeValue.bind(this)}
                 />
                 <br />
                 <br />
@@ -87,7 +107,7 @@ class CAddressForm extends Component {
                     variant="outlined"
                     fullWidth
                     value={country}
-                    onChange={handleChangeValue}
+                    onChange={this.handleChangeValue.bind(this)}
                 />
                 <br />
                 <br />
@@ -95,7 +115,7 @@ class CAddressForm extends Component {
                     variant="outlined" 
                     color="primary" 
                     fullWidth
-                    onClick={handleSubmitForm}
+                    onClick={this.handleSubmitBtnClick.bind(this)}
                 >
                     <Edit />
                     Submit
