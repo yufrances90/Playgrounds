@@ -114,4 +114,9 @@ app.get('/getById', (req, res) => {
     });
 });
 
+app.put('/updateById', (req, res) => {
+
+    console.log(req.body);
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}!`));

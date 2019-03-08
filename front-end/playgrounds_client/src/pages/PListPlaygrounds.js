@@ -8,7 +8,8 @@ import CListPlaygrounds from '../components/CListPlaygrounds';
 
 import {
     getAllPlaygrounds,
-    getPlaygroundById
+    getPlaygroundById,
+    updatePlaygroundById
 } from '../utils/apiUtils';
 import {
     formatAddress
@@ -63,6 +64,8 @@ class PListPlaygrounds extends Component {
         };
 
         console.log(reqObj);
+
+        updatePlaygroundById(reqObj);
     }
 
     render() {
