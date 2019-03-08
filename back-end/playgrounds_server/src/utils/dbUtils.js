@@ -93,10 +93,45 @@ const getPlaygroundById = async (id) => {
     }
 }
 
+const updatePlaygroundById = async (reqObj) => {
+
+    const {
+        id,
+        name,
+        address,
+        coords,
+        type
+    } = reqObj;
+
+    const query = {
+        _id: ObjectID(id)
+    };
+
+    const newValue = (type === 0)? {
+        name
+    } : {
+        address,
+        coords
+    };
+
+    try {
+
+        const dbObj = await connectDatabase();
+        const playgroundCollection = dbObj.database.collection(playgroundCollectionName);
+        
+        const response = await playgroundCollection.update(query, {$set: newValue});
+
+        return response;
+    } catch (err) {
+        throw err;
+    }
+}
+
 module.exports = {
     connectDatabase,
     getApiKey,
     saveNewPlayground,
     getAllPlaygrounds,
-    getPlaygroundById
+    getPlaygroundById,
+    updatePlaygroundById
 }

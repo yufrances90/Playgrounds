@@ -116,7 +116,11 @@ app.get('/getById', (req, res) => {
 
 app.put('/updateById', (req, res) => {
 
-    console.log(req.body);
+    services.updatePlaygroundById(req.body).then(result => {
+        res.status(200).send(JSON.stringify(result));
+    }).catch(err => {
+        res.status(500).send(JSON.stringify(err));
+    });
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));

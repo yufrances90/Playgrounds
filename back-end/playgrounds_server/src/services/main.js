@@ -119,6 +119,36 @@ const getPlaygroundById = async (id) => {
     }
 }
 
+const updatePlaygroundById = async (reqObj) => {
+
+    try {
+
+        const { id, name, address, type } = reqObj;
+
+        let coords;
+
+        /**
+         * type
+         *  0: name change
+         *  1: address change
+         */
+        if (type === 1) {
+
+            const response = await fetchCoordinatesByAddress(address);
+
+            coords = response.results[0].geometry.location;
+        }
+
+        utils.dbUtils.updatePlaygroundById({
+            ...reqObj,
+            coords
+        });
+
+    } catch (err) {
+        throw err;
+    }
+}
+
 module.exports = {
     fetchCoordinatesByAddress,
     fetchCurrentWeatherData,
@@ -126,5 +156,6 @@ module.exports = {
     getGoogleApiKey,
     createNewPlayground,
     getAllPlaygrounds,
-    getPlaygroundById
+    getPlaygroundById,
+    updatePlaygroundById
 }
