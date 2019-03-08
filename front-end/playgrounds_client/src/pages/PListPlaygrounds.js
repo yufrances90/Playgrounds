@@ -9,7 +9,8 @@ import CListPlaygrounds from '../components/CListPlaygrounds';
 import {
     getAllPlaygrounds,
     getPlaygroundById,
-    updatePlaygroundById
+    updatePlaygroundById,
+    deletePlaygroundById
 } from '../utils/apiUtils';
 import {
     formatAddress
@@ -68,6 +69,14 @@ class PListPlaygrounds extends Component {
         updatePlaygroundById(reqObj);
     }
 
+    handleDeletePlayground(id) {
+
+        const { selectedPlayground } = this.state;
+        const { _id } = selectedPlayground;
+
+        deletePlaygroundById(_id);
+    }
+
     render() {
 
         const { playgrounds, selectedPlayground } = this.state;
@@ -83,6 +92,7 @@ class PListPlaygrounds extends Component {
                     setSelectedPlayground={this.setSelectedPlayground.bind(this)} 
                     selectedPlayground={selectedPlayground}
                     handleSubmitForm={this.handleSubmitForm.bind(this)}
+                    handleDeletePlayground={this.handleDeletePlayground.bind(this)}
                 />
                 
             </div>

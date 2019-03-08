@@ -36,7 +36,8 @@ class CPlayground extends Component {
 
         const { 
             selectedPlayground,
-            handleSubmitForm 
+            handleSubmitForm,
+            handleDeletePlayground 
         } = this.props;
 
         const { open } = this.state;
@@ -65,7 +66,11 @@ class CPlayground extends Component {
                         <Edit /> Edit
                     </Button>
                     <span>  </span>
-                    <Button variant="outlined" color="secondary">
+                    <Button 
+                        variant="outlined" 
+                        color="secondary"
+                        onClick={handleDeletePlayground}
+                    >
                         <Delete /> Delete
                     </Button>
                 </div>

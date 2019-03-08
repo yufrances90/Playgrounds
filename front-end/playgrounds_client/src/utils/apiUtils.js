@@ -62,3 +62,12 @@ export const updatePlaygroundById = async (obj) => {
 
     handleResponse(response);
 }
+
+export const deletePlaygroundById = async (id) => {
+
+    const url = `${baseUrl}/deleteById?id=${id}`;
+
+    const response = await axios.delete(url);
+
+    handleResponse(response);
+}
