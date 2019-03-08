@@ -119,11 +119,11 @@ const getPlaygroundById = async (id) => {
     }
 }
 
-const updatePlaygroundById = async (reqObj) => {
+const updatePlaygroundById = async (reqObj, id) => {
 
     try {
 
-        const { id, name, address, type } = reqObj;
+        const { address, type } = reqObj;
 
         let coords;
 
@@ -141,7 +141,8 @@ const updatePlaygroundById = async (reqObj) => {
 
         utils.dbUtils.updatePlaygroundById({
             ...reqObj,
-            coords
+            coords,
+            id
         });
 
     } catch (err) {

@@ -52,9 +52,11 @@ export const getPlaygroundById = async (id) => {
     return handleResponse(response);
 }
 
-export const updatePlaygroundById = async (reqObj) => {
+export const updatePlaygroundById = async (obj) => {
 
-    const url = `${baseUrl}/updateById`;
+    const { id, ...reqObj } = obj;
+
+    const url = `${baseUrl}/updateById?id=${id}`;
 
     const response = await axios.put(url, reqObj);
 

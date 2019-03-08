@@ -116,7 +116,9 @@ app.get('/getById', (req, res) => {
 
 app.put('/updateById', (req, res) => {
 
-    services.updatePlaygroundById(req.body).then(result => {
+    const { id } = req.query;
+
+    services.updatePlaygroundById(req.body, id).then(result => {
         res.status(200).send(JSON.stringify(result));
     }).catch(err => {
         res.status(500).send(JSON.stringify(err));
