@@ -10,6 +10,7 @@ import './App.css';
 import CNavbar from './components/CNavbar';
 import PNewPlayground from './pages/PNewPlayground';
 import PListPlaygrounds from './pages/PListPlaygrounds';
+import PWeather from './pages/PWeather';
 
 class App extends Component {
 
@@ -21,6 +22,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={PListPlaygrounds} />
                         <Route path="/create" component={PNewPlayground} />
+                        <Route path="/weather" component={PWeather} />
                     </Switch>
                 </div>
             </div>
