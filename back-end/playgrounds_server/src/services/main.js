@@ -166,6 +166,11 @@ const getClosestPlaygroundsByCoord = async (location) => {
 
     try {
 
+        location = {
+            lng: -123,
+            lat: 49
+        };
+
         const playgrounds = await utils.dbUtils.getAllPlaygrounds();
 
         return playgrounds.filter(playground => {
@@ -174,7 +179,19 @@ const getClosestPlaygroundsByCoord = async (location) => {
 
             const dist = utils.helperUtils.computeDistBtw2Coords(location, coords);
 
-            return Math.abs(dist) < 30;
+            console.log(dist, playground);
+
+            return Math.abs(dist) < 50;
+        })
+        .sort((playground1, playground2) => {
+
+            const coords1 = playground1.coords;
+            const coords2 = playground2.coords;
+
+            const dist1 = utils.helperUtils.computeDistBtw2Coords(location, coords1);
+            const dist2 = utils.helperUtils.computeDistBtw2Coords(location, coords2);
+
+            return (dist1 > dist2);
         });
     } catch(err) {
         throw err;
