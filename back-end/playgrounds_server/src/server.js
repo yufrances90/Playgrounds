@@ -85,14 +85,14 @@ app.get('/googleKey', (req, res) => {
     })
 });
 
-app.get('/create', (req, res) => {
-
-    services.createNewPlayground(req.query).then(result => {
+app.post('/create', (req, res) => {
+    
+    services.createNewPlayground(req.body).then(result => {
         res.status(200).send(JSON.stringify(result));
     }).catch(err => {
         res.status(500).send(JSON.stringify(err));
     });
-});
+})
 
 app.get('/getAll', (req, res) => {
 
