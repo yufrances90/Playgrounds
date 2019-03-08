@@ -127,11 +127,32 @@ const updatePlaygroundById = async (reqObj) => {
     }
 }
 
+const deletePlaygroundById = async (id) => {
+
+    const query = {
+        _id: ObjectID(id)
+    };
+
+    try {
+
+        const dbObj = await connectDatabase();
+        const playgroundCollection = dbObj.database.collection(playgroundCollectionName);
+
+        const response = await playgroundCollection.deleteOne(query);
+
+        return response;
+
+    } catch(err) {
+        throw err;
+    }
+}
+
 module.exports = {
     connectDatabase,
     getApiKey,
     saveNewPlayground,
     getAllPlaygrounds,
     getPlaygroundById,
-    updatePlaygroundById
+    updatePlaygroundById,
+    deletePlaygroundById
 }

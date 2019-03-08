@@ -150,6 +150,18 @@ const updatePlaygroundById = async (reqObj, id) => {
     }
 }
 
+const deletePlaygroundById = async (id) => {
+
+    try {
+
+        const response = utils.dbUtils.deletePlaygroundById(id);
+
+        return response;
+    } catch(err) {
+        throw err;
+    }
+}
+
 module.exports = {
     fetchCoordinatesByAddress,
     fetchCurrentWeatherData,
@@ -158,5 +170,6 @@ module.exports = {
     createNewPlayground,
     getAllPlaygrounds,
     getPlaygroundById,
-    updatePlaygroundById
+    updatePlaygroundById,
+    deletePlaygroundById
 }

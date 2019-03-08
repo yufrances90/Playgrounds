@@ -123,6 +123,17 @@ app.put('/updateById', (req, res) => {
     }).catch(err => {
         res.status(500).send(JSON.stringify(err));
     });
-})
+});
+
+app.delete('/deleteById', (req, res) => {
+
+    const { id } = req.query;
+
+    services.deletePlaygroundById(id).then(result => {
+        res.status(200).send(JSON.stringify(result));
+    }).catch(err => {
+        res.status(500).send(JSON.stringify(err));
+    })
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
