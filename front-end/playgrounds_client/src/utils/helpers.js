@@ -22,3 +22,7 @@ export const handleResponse = (response) => {
         return null;
     }
 }
+
+export const computeUNIXTimestamp = (date) => {
+    return parseInt((date.getTime() / 1000).toFixed(0));
+}
