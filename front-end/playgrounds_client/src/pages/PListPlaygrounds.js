@@ -43,7 +43,7 @@ class PListPlaygrounds extends Component {
          *  0: name change
          *  1: address change
          */
-        console.log(obj);
+        console.log(obj, type);
     }
 
     render() {

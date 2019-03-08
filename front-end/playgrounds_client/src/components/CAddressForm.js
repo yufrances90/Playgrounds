@@ -16,7 +16,8 @@ class CAddressForm extends Component {
         street: '',
         city: '',
         stateS: '',
-        country: ''
+        country: '',
+        type: -1
     }
 
     processAddressStr(address) {
@@ -66,22 +67,41 @@ class CAddressForm extends Component {
                 street,
                 city,
                 stateS,
-                country
+                country,
+                type: 2
             });
         }
     }
 
     handleChangeValue(event) {
+
+        const { type } = this.state;
+
+        const attributeName = event.target.name;
+
+        if (type !== 1) {
+
+            if (attributeName !== "name") {
+                this.setState({
+                    type: 1
+                });
+            } else {
+                this.setState({
+                    type: 0
+                });
+            }
+        }
+
         this.setState({
-            [event.target.name]: event.target.value
+            [attributeName]: event.target.value
         });
     }
 
     handleSubmitBtnClick(event) {
 
-        const obj = this.state;
+        const { type, ...obj } = this.state;
 
-        this.props.handleSubmitForm(obj);
+        this.props.handleSubmitForm(obj, type);
     }
 
     render() {

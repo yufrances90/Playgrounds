@@ -8,7 +8,7 @@ import {
 
 class PNewPlayground extends Component {
 
-    handleSubmitForm(obj) {
+    handleSubmitForm(obj, type) {
         
         const {
             name,
