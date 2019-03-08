@@ -8,7 +8,8 @@ import {
 } from '@material-ui/core';
 import {
     AddLocation,
-    List
+    List,
+    WbCloudy
 } from '@material-ui/icons';
 
 import {
@@ -39,6 +40,13 @@ class CNavbar extends Component {
                                 <Tooltip title="View List of Locations">
                                     <Typography color="inherit" variant="button">
                                         <List /> 
+                                    </Typography>
+                                </Tooltip>
+                            </Link>
+                            <Link to="/weather" className="navbar-link">
+                                <Tooltip title="Check Weather">
+                                    <Typography color="inherit" variant="button">
+                                        <WbCloudy /> 
                                     </Typography>
                                 </Tooltip>
                             </Link>

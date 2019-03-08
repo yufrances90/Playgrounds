@@ -15,7 +15,8 @@
 .navbar-link {
     text-decoration: none;
     color: inherit;
-    margin-right: 0.5em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 .pg-container {
