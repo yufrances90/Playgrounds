@@ -88,7 +88,7 @@ app.get('/googleKey', (req, res) => {
 app.post('/create', (req, res) => {
     
     services.createNewPlayground(req.body).then(result => {
-        res.status(200).send(JSON.stringify(result));
+        res.status(201).send(JSON.stringify(result));
     }).catch(err => {
         res.status(500).send(JSON.stringify(err));
     });
@@ -133,7 +133,18 @@ app.delete('/deleteById', (req, res) => {
         res.status(200).send(JSON.stringify(result));
     }).catch(err => {
         res.status(500).send(JSON.stringify(err));
-    })
+    });
 });
+
+app.post('/closestPlaygroundsByCoord', (req, res) => {
+
+    const { coord } = req.body;
+
+    services.getClosestPlaygroundsByCoord(coord).then(result => {
+        res.status(200).send(JSON.stringify(result));
+    }).catch(err => {
+        res.status(500).send(JSON.stringify(err));
+    });
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));

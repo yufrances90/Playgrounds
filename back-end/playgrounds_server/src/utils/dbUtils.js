@@ -70,10 +70,12 @@ const getAllPlaygrounds = async () => {
 
         const response = await playgroundCollection.find({}).toArray();
 
+        dbObj.client.close();
+
         return response;
     } catch(err) {
         throw err;
-    }
+    } 
 }
 
 const getPlaygroundById = async (id) => {
@@ -86,6 +88,8 @@ const getPlaygroundById = async (id) => {
         const response = await playgroundCollection.findOne({
             _id: ObjectID(id)
         });
+
+        dbObj.client.close();
 
         return response;
     } catch(err) {
@@ -121,6 +125,8 @@ const updatePlaygroundById = async (reqObj) => {
         
         const response = await playgroundCollection.update(query, {$set: newValue});
 
+        dbObj.client.close();
+
         return response;
     } catch (err) {
         throw err;
@@ -139,6 +145,8 @@ const deletePlaygroundById = async (id) => {
         const playgroundCollection = dbObj.database.collection(playgroundCollectionName);
 
         const response = await playgroundCollection.deleteOne(query);
+
+        dbObj.client.close();
 
         return response;
 

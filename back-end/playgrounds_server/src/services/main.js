@@ -154,9 +154,28 @@ const deletePlaygroundById = async (id) => {
 
     try {
 
-        const response = utils.dbUtils.deletePlaygroundById(id);
+        const response = await utils.dbUtils.deletePlaygroundById(id);
 
         return response;
+    } catch(err) {
+        throw err;
+    }
+}
+
+const getClosestPlaygroundsByCoord = async (location) => {
+
+    try {
+
+        const playgrounds = await utils.dbUtils.getAllPlaygrounds();
+
+        return playgrounds.filter(playground => {
+
+            const { coords } = playground;
+
+            const dist = utils.helperUtils.computeDistBtw2Coords(location, coords);
+
+            return Math.abs(dist) < 30;
+        });
     } catch(err) {
         throw err;
     }
@@ -171,5 +190,6 @@ module.exports = {
     getAllPlaygrounds,
     getPlaygroundById,
     updatePlaygroundById,
-    deletePlaygroundById
+    deletePlaygroundById,
+    getClosestPlaygroundsByCoord
 }

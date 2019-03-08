@@ -9,8 +9,11 @@ const toRadians = (deg) => {
 
 const computeDistBtw2Coords = (location1, location2) => {
 
-    const { lng1, lat1 } = location1;
-    const { lng2, lat2 } = location2;
+    const lng1 = location1.lng;
+    const lat1 = location1.lat;
+
+    const lng2 = location2.lng;
+    const lat2 = location2.lat;
 
     const R = 6371;
 
