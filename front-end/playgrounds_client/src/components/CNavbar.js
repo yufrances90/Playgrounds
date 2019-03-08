@@ -9,7 +9,8 @@ import {
 import {
     AddLocation,
     List,
-    WbCloudy
+    WbCloudy,
+    NearMe
 } from '@material-ui/icons';
 
 import {
@@ -47,6 +48,13 @@ class CNavbar extends Component {
                                 <Tooltip title="Check Weather">
                                     <Typography color="inherit" variant="button">
                                         <WbCloudy /> 
+                                    </Typography>
+                                </Tooltip>
+                            </Link>
+                            <Link to="/near" className="navbar-link">
+                                <Tooltip title="Check Closest Playgrounds">
+                                    <Typography color="inherit" variant="button">
+                                        <NearMe /> 
                                     </Typography>
                                 </Tooltip>
                             </Link>

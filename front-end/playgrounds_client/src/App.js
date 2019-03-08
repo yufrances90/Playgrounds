@@ -11,6 +11,7 @@ import CNavbar from './components/CNavbar';
 import PNewPlayground from './pages/PNewPlayground';
 import PListPlaygrounds from './pages/PListPlaygrounds';
 import PWeather from './pages/PWeather';
+import PNear from './pages/PNear';
 
 class App extends Component {
 
@@ -23,6 +24,7 @@ class App extends Component {
                         <Route exact path="/" component={PListPlaygrounds} />
                         <Route path="/create" component={PNewPlayground} />
                         <Route path="/weather" component={PWeather} />
+                        <Route path="/near" component={PNear} />
                     </Switch>
                 </div>
             </div>
