@@ -12,10 +12,34 @@ import {
     Delete
 } from '@material-ui/icons';
 
+import CAddressModal from './CAddressModal';
+
 class CPlayground extends Component {
+
+    state = {
+        open: false
+    }
+
+    handleClickOpen(event) {
+        this.setState({
+            open: true
+        });
+    }
+
+    handleClose(event) {
+        this.setState({
+            open: false
+        });
+    }
+
     render() {
 
-        const { selectedPlayground } = this.props;
+        const { 
+            selectedPlayground,
+            handleSubmitForm 
+        } = this.props;
+
+        const { open } = this.state;
 
         return (
             <div className="pg-container">
@@ -33,7 +57,11 @@ class CPlayground extends Component {
                 </div>
                 <Divider />
                 <div className="button-grp">
-                    <Button variant="outlined" color="primary">
+                    <Button 
+                        variant="outlined" 
+                        color="primary"
+                        onClick={this.handleClickOpen.bind(this)}
+                    >
                         <Edit /> Edit
                     </Button>
                     <span>  </span>
@@ -41,6 +69,12 @@ class CPlayground extends Component {
                         <Delete /> Delete
                     </Button>
                 </div>
+                <CAddressModal 
+                    open={open}
+                    handleClose={this.handleClose.bind(this)}
+                    handleSubmitForm={handleSubmitForm}
+                    playground={selectedPlayground}
+                />
             </div>
         );
     }

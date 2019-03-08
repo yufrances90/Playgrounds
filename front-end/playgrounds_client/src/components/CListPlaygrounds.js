@@ -13,7 +13,8 @@ class CListPlaygrounds extends Component {
         const { 
             playgrounds, 
             setSelectedPlayground, 
-            selectedPlayground
+            selectedPlayground,
+            handleSubmitForm
         } = this.props;
 
         return (
@@ -30,6 +31,7 @@ class CListPlaygrounds extends Component {
                             selectedPlayground && 
                             <CPlayground
                                 selectedPlayground={selectedPlayground} 
+                                handleSubmitForm={handleSubmitForm}
                             />
                         }
                     </Grid>

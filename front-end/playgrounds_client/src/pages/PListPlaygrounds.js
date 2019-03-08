@@ -36,6 +36,16 @@ class PListPlaygrounds extends Component {
         });
     }
 
+    handleSubmitForm(obj, type) {
+
+        /**
+         * type
+         *  0: name change
+         *  1: address change
+         */
+        console.log(obj);
+    }
+
     render() {
 
         const { playgrounds, selectedPlayground } = this.state;
@@ -50,6 +60,7 @@ class PListPlaygrounds extends Component {
                     playgrounds={playgrounds}
                     setSelectedPlayground={this.setSelectedPlayground.bind(this)} 
                     selectedPlayground={selectedPlayground}
+                    handleSubmitForm={this.handleSubmitForm.bind(this)}
                 />
                 
             </div>

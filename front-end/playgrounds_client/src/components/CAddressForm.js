@@ -19,6 +19,58 @@ class CAddressForm extends Component {
         country: ''
     }
 
+    processAddressStr(address) {
+        
+        const parts = address.split(",");
+
+        const updatedParts = parts.map(part => {
+            return part.trim();
+        });
+
+        const [ streetWithNumber, city, stateS, country ] = updatedParts;
+
+        const [ streetNumber, ...others ] = streetWithNumber.split(" ");
+
+        const street = others.join(" ");
+
+        return {
+            streetNumber,
+            street,
+            city,
+            stateS,
+            country
+        };
+    }
+
+    componentDidMount() {
+
+        const { playground } = this.props;
+
+        if(playground !== undefined) {
+
+            const { name, address } = playground;
+
+            const addressInfo = this.processAddressStr(address);
+
+            const {
+                streetNumber,
+                street,
+                city,
+                stateS,
+                country
+            } = addressInfo;
+
+            this.setState({
+                name,
+                streetNumber,
+                street,
+                city,
+                stateS,
+                country
+            });
+        }
+    }
+
     handleChangeValue(event) {
         this.setState({
             [event.target.name]: event.target.value
@@ -40,7 +92,7 @@ class CAddressForm extends Component {
             street,
             city,
             stateS,
-            country,
+            country
         } = this.state;
 
         return (
