@@ -71,6 +71,7 @@ class CSearchBox extends Component {
                                 keyboard
                                 clearable
                                 disableFuture
+                                disablePast
                                 margin="normal"
                                 label="End Date"
                                 fullWidth
