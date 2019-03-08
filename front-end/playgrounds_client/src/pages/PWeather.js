@@ -13,7 +13,9 @@ import {
 class PWeather extends Component {
 
     state = {
-        playgrounds: []
+        playgrounds: [],
+        selectedDate: new Date(),
+        selectedPId: ''
     }
 
     async componentDidMount() {
@@ -25,19 +27,47 @@ class PWeather extends Component {
         });
     }
 
+    handleDateChange(date) {
+        this.setState({
+            selectedDate: date
+        });
+    }
+
+    handlePlaygroundChange(event) {
+        this.setState({
+            selectedPId: event.target.value
+        });
+    }
+
+    handleSubmit(event) {
+        
+        const { selectedPId, selectedDate } = this.state;
+
+        console.log(selectedPId, selectedDate);
+    }
+
     render() {
 
-        const { playgrounds } = this.state;
+        const { 
+            playgrounds, 
+            selectedPId,
+            selectedDate
+        } = this.state;
 
         if (playgrounds.length === 0) {
             return <LinearProgress />
         }
 
-        console.log(playgrounds);
-
         return (
             <div>
-                <CWeather />
+                <CWeather 
+                    playgrounds={playgrounds}
+                    handleDateChange={this.handleDateChange.bind(this)}
+                    handlePlaygroundChange={this.handlePlaygroundChange.bind(this)}
+                    selectedPId={selectedPId}
+                    selectedDate={selectedDate}
+                    handleSubmit={this.handleSubmit.bind(this)}
+                />
             </div>
         );
     }

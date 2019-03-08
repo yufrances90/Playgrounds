@@ -9,14 +9,34 @@ import CWeatherDetails from './CWeatherDetails';
 
 class CWeather extends Component {
     render() {
+
+        const { 
+            playgrounds,
+            handleDateChange,
+            handlePlaygroundChange,
+            selectedPId,
+            selectedDate,
+            handleSubmit
+        } = this.props;
+
         return (
             <div>
                 <Grid container>
                     <Grid item xs={3}>
-                        <CSearchBox />
+                        <CSearchBox 
+                            playgrounds={playgrounds}
+                            handleDateChange={handleDateChange}
+                            handlePlaygroundChange={handlePlaygroundChange}
+                            selectedPId={selectedPId}
+                            selectedDate={selectedDate}
+                            handleSubmit={handleSubmit}
+                        />
                     </Grid>
                     <Grid item xs={9}>
-                        <CWeatherDetails />
+                        {
+                            playgrounds.length !== 0 && 
+                            <CWeatherDetails />
+                        }
                     </Grid>
                 </Grid>
             </div>
