@@ -4,22 +4,18 @@ import CNewPlayGround from '../components/CNewPlayGround';
 
 import {
     createNewPlayground
-} from '../utils/apiUtils'
+} from '../utils/apiUtils';
+import {
+    formatAddress
+} from '../utils/helpers';
 
 class PNewPlayground extends Component {
 
     handleSubmitForm(obj, type) {
-        
-        const {
-            name,
-            streetNumber,
-            street,
-            city,
-            stateS,
-            country
-        } = obj;
 
-        const address = `${streetNumber} ${street}, ${city}, ${stateS}, ${country}`;
+        const { name } = obj;
+
+        const address = formatAddress(obj);
 
         console.log(address);
 

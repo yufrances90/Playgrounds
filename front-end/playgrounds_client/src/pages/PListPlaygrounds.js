@@ -10,6 +10,9 @@ import {
     getAllPlaygrounds,
     getPlaygroundById
 } from '../utils/apiUtils';
+import {
+    formatAddress
+} from '../utils/helpers';
 
 class PListPlaygrounds extends Component {
 
@@ -43,7 +46,13 @@ class PListPlaygrounds extends Component {
          *  0: name change
          *  1: address change
          */
-        console.log(obj, type);
+        console.log(type);
+
+        const { name } = obj;
+
+        const address = formatAddress(obj);
+
+        console.log(address);
     }
 
     render() {
