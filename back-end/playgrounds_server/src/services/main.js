@@ -166,11 +166,6 @@ const getClosestPlaygroundsByCoord = async (location) => {
 
     try {
 
-        location = {
-            lng: -123,
-            lat: 49
-        };
-
         const playgrounds = await utils.dbUtils.getAllPlaygrounds();
 
         return playgrounds.filter(playground => {
