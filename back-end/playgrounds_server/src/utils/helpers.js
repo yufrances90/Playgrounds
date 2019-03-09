@@ -29,6 +29,16 @@ const computeDistBtw2Coords = (location1, location2) => {
     return R * c;
 }
 
+const computeUnixTimestamp = (date) => {
+    return Math.floor(date.getTime()/1000.0);
+}
+
+const computeDateFromUnixTimestamp = (unixTimestamp) => {
+    return new Date(unixTimestamp * 1000);
+}
+
 module.exports = {
-    computeDistBtw2Coords
+    computeDistBtw2Coords,
+    computeUnixTimestamp,
+    computeDateFromUnixTimestamp
 }

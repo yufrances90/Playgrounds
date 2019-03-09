@@ -39,24 +39,90 @@ const fetchCurrentWeatherData = async ({lon, lat}) => {
     });
 }
 
+const processWeatherData = async (data) => {
+
+    let weatherData = {};
+
+    data.forEach(element => {
+
+        const date = utils.helperUtils.computeDateFromUnixTimestamp(element.dt);
+
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+
+        const monthString = (month <= 9)? `0${month}` : `${month}`;
+        const dayString = (day <= 9)? `0${day}`:`${day}`;
+
+        const dateString = `${monthString}-${dayString}`;
+
+        if (weatherData.hasOwnProperty(dateString)) {
+            weatherData[dateString].data.push(element);
+        } else {
+
+            weatherData[dateString] = {};
+
+            weatherData[dateString].data = [element];
+        }
+    });
+
+    return weatherData;
+}
+
+const processAndFetchHistoricalData = async ({ id, coord }) => {
+
+    coord = {
+        lng: 139,
+        lat: 35
+    };
+
+    const startDate = new Date();
+    const endDate = new Date();
+
+    startDate.setDate(startDate.getDate() - 6);
+
+    const start = utils.helperUtils.computeUnixTimestamp(startDate);
+    const end = utils.helperUtils.computeUnixTimestamp(endDate);
+
+    const { lng, lat } = coord;
+
+    const params = {
+        lon: lng,
+        lat,
+        start,
+        end
+    };
+
+    try {
+
+        const data = await fetchHistoricalWeatherData(params);
+
+        const weatherData = await processWeatherData(data, startDate, endDate, id);
+
+        return weatherData;
+    } catch(err) {
+        throw err;
+    }
+}
+
 const fetchHistoricalWeatherData = async ({ lon, lat, start, cnt=undefined, end=undefined }) => {
 
-    const historicalWeatherBaseUri = utils.urlUtils.getUrl("open_weather_base_url.historical");
-    const key = await utils.dbUtils.getApiKey("open_weather_api_key");
+    try {
 
-    let url = `${historicalWeatherBaseUri}?lat=${lat}&lon=${lon}&type=hour&start=${start}`;
+        const historicalWeatherBaseUri = utils.urlUtils.getUrl("open_weather_base_url.historical");
+        const key = await utils.dbUtils.getApiKey("open_weather_api_key");
 
-    url = (cnt === undefined)? url + `&end=${end}` : url + `&cnt=${cnt}`;
+        let url = `${historicalWeatherBaseUri}?lat=${lat}&lon=${lon}&type=hour&start=${start}`;
 
-    url += `&appid=${key}`;
+        url = (cnt === undefined)? url + `&end=${end}` : url + `&cnt=${cnt}`;
 
-    axios.get(url)
-    .then(response => {
-        console.log(JSON.stringify(response.data));
-    })
-    .catch(error => {
-        console.log(error);
-    });
+        url += `&appid=${key}`;
+
+        const response = await axios.get(url);
+
+        return response.data.list;
+    } catch(err) {
+        throw err;
+    }
 }
 
 const getGoogleApiKey = async () => {
@@ -203,5 +269,6 @@ module.exports = {
     getPlaygroundById,
     updatePlaygroundById,
     deletePlaygroundById,
-    getClosestPlaygroundsByCoord
+    getClosestPlaygroundsByCoord,
+    processAndFetchHistoricalData
 }
