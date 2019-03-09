@@ -8,11 +8,9 @@ import CWeather from '../components/CWeather';
 
 import {
     getAllPlaygrounds,
-    getPlaygroundById
+    getPlaygroundById,
+    getPastWeatherInfo
 } from '../utils/apiUtils';
-import {
-    computeUNIXTimestamp
-} from '../utils/helpers';
 
 class PWeather extends Component {
 
@@ -45,15 +43,22 @@ class PWeather extends Component {
 
     async handleSubmit(event) {
         
-        const { selectedPId, selectedDate } = this.state;
+        const { selectedPId } = this.state;
 
-        const timestamp = computeUNIXTimestamp(selectedDate);
-
-        const response = await getPlaygroundById(selectedPId);
+        let response = await getPlaygroundById(selectedPId);
 
         const { coords } = response;
 
-        console.log(coords);
+        const reqObj = {
+            coord: {
+                ...coords
+            },
+            id: selectedPId
+        }
+
+        response = await getPastWeatherInfo(reqObj);
+
+        console.log(response);
     }
 
     render() {
