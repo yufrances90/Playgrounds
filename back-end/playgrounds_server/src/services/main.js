@@ -115,10 +115,6 @@ const processAndFetchHistoricalData = async ({ id, coord }) => {
 
         const result = await processWeatherData(data);
 
-        /*
-            if response === null, create; else update
-        */
-
         if (response === null) {
 
             const newWeatherInfo = {
@@ -127,7 +123,9 @@ const processAndFetchHistoricalData = async ({ id, coord }) => {
                 weatherData: result.weatherData
             };
 
-            utils.dbUtils.saveNewWeatherInfo(newWeatherInfo);
+            await utils.dbUtils.saveNewWeatherInfo(newWeatherInfo);
+
+            return newWeatherInfo;
         } else {
 
             const updatedDates = savedDates.concat(missingDates);
@@ -141,9 +139,19 @@ const processAndFetchHistoricalData = async ({ id, coord }) => {
                 updatedDates,
                 updatedWeatherData
             );
-        }
 
-        // return result;
+            const weatherData = {};
+
+            dates.forEach(date => {
+                weatherData[date] = updatedWeatherData[date];
+            })
+
+            return {
+                pgId: id,
+                dates,
+                weatherData
+            };
+        }
 
     } catch(err) {
         throw err;
