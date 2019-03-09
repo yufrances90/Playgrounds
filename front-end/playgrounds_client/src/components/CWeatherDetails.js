@@ -7,15 +7,25 @@ import {
     TableHead,
     TableBody,
     TableRow,
-    TableCell
+    TableCell,
+    LinearProgress
 } from '@material-ui/core';
 
 class CWeatherDetails extends Component {
     render() {
+
+        const { data, playground } = this.props;
+
+        if (data === undefined || playground === undefined) {
+            return <LinearProgress />
+        }
+
+        const { headerData, mainData } = data;
+
         return (
             <div className="wh-container">
                 <Typography variant="h3">
-                    Playground1
+                    {playground.name}
                 </Typography>
                 <Divider />
                 <Table className="wh-table">
@@ -23,56 +33,23 @@ class CWeatherDetails extends Component {
                         <TableRow>
                             <TableCell>
                             </TableCell>
-                            <TableCell align="right">
-                                03-02
-                            </TableCell>
-                            <TableCell align="right">
-                                03-03
-                            </TableCell>
-                            <TableCell align="right">
-                                03-04
-                            </TableCell>
-                            <TableCell align="right">
-                                03-05
-                            </TableCell>
-                            <TableCell align="right">
-                                03-06
-                            </TableCell>
-                            <TableCell align="right">
-                                03-07
-                            </TableCell>
-                            <TableCell align="right">
-                                03-08
-                            </TableCell>
+                            {headerData.map(element => (
+                                <TableCell key={element}>
+                                    {element}
+                                </TableCell>
+                            ))}
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow>
-                            <TableCell>
-                                Hello
-                            </TableCell>
-                            <TableCell align="right">
-                                1
-                            </TableCell>
-                            <TableCell align="right">
-                                2
-                            </TableCell>
-                            <TableCell align="right">
-                                3
-                            </TableCell>
-                            <TableCell align="right">
-                                4
-                            </TableCell>
-                            <TableCell align="right">
-                                5
-                            </TableCell>
-                            <TableCell align="right">
-                                6
-                            </TableCell>
-                            <TableCell align="right">
-                                7
-                            </TableCell>
-                        </TableRow>
+                        {mainData.map((arr, index) => (
+                            <TableRow key={index}>
+                                {arr.map((element, index1) => (
+                                    <TableCell key={`${arr[0]}-${index1}`}>
+                                        {element}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </div>

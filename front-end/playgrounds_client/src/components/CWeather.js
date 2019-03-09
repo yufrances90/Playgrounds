@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import {
-    Grid
+    Grid,
+    LinearProgress
 } from '@material-ui/core';
 
 import CSearchBox from './CSearchBox';
@@ -16,13 +17,19 @@ class CWeather extends Component {
             handlePlaygroundChange,
             selectedPId,
             selectedDate,
-            handleSubmit
+            handleSubmit,
+            data,
+            playground
         } = this.props;
+
+        if (playgrounds === undefined || playgrounds.length === 0) {
+            return <LinearProgress />
+        }
 
         return (
             <div>
                 <Grid container>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
                         <CSearchBox 
                             playgrounds={playgrounds}
                             handleDateChange={handleDateChange}
@@ -32,11 +39,11 @@ class CWeather extends Component {
                             handleSubmit={handleSubmit}
                         />
                     </Grid>
-                    <Grid item xs={9}>
-                        {
-                            playgrounds.length !== 0 && 
-                            <CWeatherDetails />
-                        }
+                    <Grid item xs={10}>
+                        <CWeatherDetails 
+                            data={data}
+                            playground={playground}
+                        />
                     </Grid>
                 </Grid>
             </div>

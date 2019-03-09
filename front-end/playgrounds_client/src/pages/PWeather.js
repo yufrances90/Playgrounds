@@ -11,13 +11,18 @@ import {
     getPlaygroundById,
     getPastWeatherInfo
 } from '../utils/apiUtils';
+import {
+    processWeatherData
+} from '../utils/helpers';
 
 class PWeather extends Component {
 
     state = {
         playgrounds: [],
         selectedDate: new Date(),
-        selectedPId: ''
+        selectedPId: '',
+        data: undefined,
+        selectedPlayground: undefined
     }
 
     async componentDidMount() {
@@ -45,9 +50,9 @@ class PWeather extends Component {
         
         const { selectedPId } = this.state;
 
-        let response = await getPlaygroundById(selectedPId);
+        const playground = await getPlaygroundById(selectedPId);
 
-        const { coords } = response;
+        const { coords } = playground;
 
         const reqObj = {
             coord: {
@@ -56,9 +61,14 @@ class PWeather extends Component {
             id: selectedPId
         }
 
-        response = await getPastWeatherInfo(reqObj);
+        const response = await getPastWeatherInfo(reqObj);
 
-        console.log(response);
+        const data = processWeatherData(response);
+
+        this.setState({
+            data,
+            selectedPlayground: playground
+        });
     }
 
     render() {
@@ -66,7 +76,9 @@ class PWeather extends Component {
         const { 
             playgrounds, 
             selectedPId,
-            selectedDate
+            selectedDate,
+            data,
+            selectedPlayground
         } = this.state;
 
         if (playgrounds.length === 0) {
@@ -82,6 +94,8 @@ class PWeather extends Component {
                     selectedPId={selectedPId}
                     selectedDate={selectedDate}
                     handleSubmit={this.handleSubmit.bind(this)}
+                    data={data}
+                    playground={selectedPlayground}
                 />
             </div>
         );
