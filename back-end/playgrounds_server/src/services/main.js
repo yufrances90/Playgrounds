@@ -113,9 +113,37 @@ const processAndFetchHistoricalData = async ({ id, coord }) => {
 
         const data = await fetchHistoricalWeatherData(params);
 
-        const response = await processWeatherData(data);
+        const result = await processWeatherData(data);
 
-        return response;
+        /*
+            if response === null, create; else update
+        */
+
+        if (response === null) {
+
+            const newWeatherInfo = {
+                pgId: id,
+                dates: missingDates,
+                weatherData: result.weatherData
+            };
+
+            utils.dbUtils.saveNewWeatherInfo(newWeatherInfo);
+        } else {
+
+            const updatedDates = savedDates.concat(missingDates);
+            const updatedWeatherData = {
+                ...response.weatherData,
+                ...result.weatherData
+            };
+
+            await utils.dbUtils.updateWeatherInfoByPlaygroundId(
+                id,
+                updatedDates,
+                updatedWeatherData
+            );
+        }
+
+        // return result;
 
     } catch(err) {
         throw err;

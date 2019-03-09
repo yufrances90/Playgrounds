@@ -174,6 +174,43 @@ const getWeatherInfoByPlaygroundId = async (pgId) => {
     }
 }
 
+const saveNewWeatherInfo = async (newWeatherInfo) => {
+
+    try {
+
+        const dbObj = await connectDatabase();
+        const weatherCollection = dbObj.database.collection(weatherCollectionName);
+
+        const response = await weatherCollection.insertOne(newWeatherInfo);
+
+        dbObj.client.close();
+
+        return response;
+    } catch(err) {
+        throw err;
+    }
+}
+
+const updateWeatherInfoByPlaygroundId = async (pgId, dates, weatherData) => {
+
+    try {
+
+        const dbObj = await connectDatabase();
+        const weatherCollection = dbObj.database.collection(weatherCollectionName);
+
+        const query = { pgId };
+        const newValues = { dates, weatherData };
+
+        const response = await weatherCollection.updateOne(query, {$set: newValues});
+
+        dbObj.client.close();
+
+        return response;
+    } catch(err) {
+        throw err;
+    }
+}
+
 module.exports = {
     connectDatabase,
     getApiKey,
@@ -182,5 +219,7 @@ module.exports = {
     getPlaygroundById,
     updatePlaygroundById,
     deletePlaygroundById,
-    getWeatherInfoByPlaygroundId
+    getWeatherInfoByPlaygroundId,
+    saveNewWeatherInfo,
+    updateWeatherInfoByPlaygroundId
 }
