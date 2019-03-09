@@ -9,6 +9,7 @@
     "axios": "^0.18.0",
     "contentful": "^7.4.0",
     "date-fns": "^2.0.0-alpha.27",
+    "google-map-react": "^1.1.2",
     "material-ui-pickers": "^2.2.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
