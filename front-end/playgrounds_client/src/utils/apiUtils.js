@@ -71,3 +71,12 @@ export const deletePlaygroundById = async (id) => {
 
     handleResponse(response);
 }
+
+export const findClosestPlaygroundsByCoord = async (coord) => {
+
+    const url = `${baseUrl}/closestPlaygroundsByCoord`;
+
+    const response = await axios.post(url, { coord });
+
+    return handleResponse(response);
+}
