@@ -44,8 +44,8 @@ class CPTable extends Component {
                                     {playground.address}
                                 </TableCell>
                                 <TableCell>
-                                    Latitude: {playground.coords.lat}, 
-                                    Longitude: {playground.coords.lng}
+                                    Latitude: {playground.coords.lat.toFixed(2)}, 
+                                    Longitude: {playground.coords.lng.toFixed(2)}
                                 </TableCell>
                             </TableRow>
                         ))}

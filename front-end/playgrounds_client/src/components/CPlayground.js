@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
     Typography,
     Divider,
-    Button,
+    IconButton,
     Tooltip
 } from '@material-ui/core';
 import {
@@ -54,29 +54,31 @@ class CPlayground extends Component {
                         <LocationCity /> {selectedPlayground.address}
                     </p>
                     <p>
-                        <LocationOn /> Longitude: {selectedPlayground.coords.lng}, Latitude: {selectedPlayground.coords.lat}
+                        <LocationOn /> 
+                        Longitude: {selectedPlayground.coords.lng.toFixed(2)}, 
+                        Latitude: {selectedPlayground.coords.lat.toFixed(2)}
                     </p>
                 </div>
                 <Divider />
                 <div className="button-grp">
                     <Tooltip title="Edit Playground Info">
-                        <Button 
+                        <IconButton 
                             variant="outlined" 
                             color="primary"
                             onClick={this.handleClickOpen.bind(this)}
                         >
                             <EditLocation /> 
-                        </Button>
+                        </IconButton>
                     </Tooltip>
                     <span>  </span>
                     <Tooltip title="Delete Playground">
-                        <Button 
+                        <IconButton 
                             variant="outlined" 
                             color="secondary"
                             onClick={handleDeletePlayground}
                         >
                             <Delete /> 
-                        </Button>
+                        </IconButton>
                     </Tooltip>
                 </div>
                 <CAddressModal 

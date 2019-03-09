@@ -59,7 +59,11 @@ class CSearchBox extends Component {
                                 key={playground._id}
                                 value={playground._id}
                             >
-                                {playground.name} [{playground.coords.lat}, {playground.coords.lng}]
+                                {playground.name} 
+                                [
+                                    {playground.coords.lat.toFixed(2)}, 
+                                    {playground.coords.lng.toFixed(2)}
+                                ]
                             </MenuItem>
                         ))}
                     </Select>
