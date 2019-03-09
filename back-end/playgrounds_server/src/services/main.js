@@ -70,15 +70,6 @@ const processWeatherData = async (data) => {
 
 const processAndFetchHistoricalData = async ({ id, coord }) => {
 
-    coord = {
-        lng: 139,
-        lat: 35
-    };
-
-    id = "5c82077c58008c35086059a2";
-
-    //////////////////////////////////////////////////////// 
-
     const dates = utils.helperUtils.generateDateArray();
 
     const response = await utils.dbUtils.getWeatherInfoByPlaygroundId(id);
