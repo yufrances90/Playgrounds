@@ -80,3 +80,12 @@ export const findClosestPlaygroundsByCoord = async (coord) => {
 
     return handleResponse(response);
 }
+
+export const getPastWeatherInfo = async (reqObj) => {
+
+    const url = `${baseUrl}/pastWeatherInfo`;
+
+    const response = await axios.post(url, reqObj);
+
+    return handleResponse(response);
+}
