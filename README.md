@@ -12,9 +12,11 @@ Playground is a full-stack application that allows a user to keep track of playg
 
 * `git clone` [https://github.com/yufrances90/Playgrounds.git](https://github.com/yufrances90/Playgrounds.git)
 * `cd back-end => cd playgrounds_server => cd src`
+* `npm install`
 * `node server.js`
 * *Open a new terminal*
 * `cd front-end => cd playgrounds_client`
+* `npm install`
 * `yarn start`
 
 ### Todos
