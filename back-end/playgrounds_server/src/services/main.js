@@ -42,18 +42,13 @@ const fetchCurrentWeatherData = async ({lon, lat}) => {
 const processWeatherData = async (data) => {
 
     let weatherData = {};
+    let dates = [];
 
     data.forEach(element => {
 
         const date = utils.helperUtils.computeDateFromUnixTimestamp(element.dt);
 
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
-
-        const monthString = (month <= 9)? `0${month}` : `${month}`;
-        const dayString = (day <= 9)? `0${day}`:`${day}`;
-
-        const dateString = `${monthString}-${dayString}`;
+        const dateString = utils.helperUtils.formatDateString(date);
 
         if (weatherData.hasOwnProperty(dateString)) {
             weatherData[dateString].data.push(element);
@@ -62,10 +57,15 @@ const processWeatherData = async (data) => {
             weatherData[dateString] = {};
 
             weatherData[dateString].data = [element];
+
+            dates.push(dateString);
         }
     });
 
-    return weatherData;
+    return {
+        weatherData,
+        dates
+    };
 }
 
 const processAndFetchHistoricalData = async ({ id, coord }) => {
@@ -75,10 +75,27 @@ const processAndFetchHistoricalData = async ({ id, coord }) => {
         lat: 35
     };
 
-    const startDate = new Date();
-    const endDate = new Date();
+    id = "5c82077c58008c35086059a2";
 
-    startDate.setDate(startDate.getDate() - 6);
+    //////////////////////////////////////////////////////// 
+
+    const dates = utils.helperUtils.generateDateArray();
+
+    const response = await utils.dbUtils.getWeatherInfoByPlaygroundId(id);
+
+    const savedDates = (response !== null)? response.dates : [];
+
+    const missingDates = dates.filter(date => !savedDates.includes(date));
+
+    const shouldFetchNewData = (savedDates === null) || 
+        missingDates.length > 0;
+
+    if (!shouldFetchNewData) {
+        return response;
+    }
+
+    const startDate = new Date(missingDates[0]);
+    const endDate = new Date(missingDates[missingDates.length - 1]);
 
     const start = utils.helperUtils.computeUnixTimestamp(startDate);
     const end = utils.helperUtils.computeUnixTimestamp(endDate);
@@ -96,9 +113,10 @@ const processAndFetchHistoricalData = async ({ id, coord }) => {
 
         const data = await fetchHistoricalWeatherData(params);
 
-        const weatherData = await processWeatherData(data, startDate, endDate, id);
+        const response = await processWeatherData(data);
 
-        return weatherData;
+        return response;
+
     } catch(err) {
         throw err;
     }

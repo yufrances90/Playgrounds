@@ -8,7 +8,8 @@
         "dbName": "appDb",
         "collections": {
             "config": "Config",
-            "playgrounds": "Playgrounds"
+            "playgrounds": "Playgrounds",
+            "weather": "Weather"
         }
     }
 }

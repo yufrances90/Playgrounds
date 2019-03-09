@@ -11,6 +11,7 @@ const dbName = dbConfig.dbName;
 
 const configCollectionName = dbConfig.collections.config;
 const playgroundCollectionName = dbConfig.collections.playgrounds;
+const weatherCollectionName = dbConfig.collections.weather;
 
 const connectDatabase = () => {
 
@@ -155,6 +156,24 @@ const deletePlaygroundById = async (id) => {
     }
 }
 
+const getWeatherInfoByPlaygroundId = async (pgId) => {
+
+    const query = { pgId };
+
+    try {
+
+        const dbObj = await connectDatabase();
+        const weatherCollection = dbObj.database.collection(weatherCollectionName);
+
+        const doc = await weatherCollection.findOne(query);
+
+        return doc;
+
+    } catch(err) {
+        throw err;
+    }
+}
+
 module.exports = {
     connectDatabase,
     getApiKey,
@@ -162,5 +181,6 @@ module.exports = {
     getAllPlaygrounds,
     getPlaygroundById,
     updatePlaygroundById,
-    deletePlaygroundById
+    deletePlaygroundById,
+    getWeatherInfoByPlaygroundId
 }
