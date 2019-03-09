@@ -89,3 +89,12 @@ export const getPastWeatherInfo = async (reqObj) => {
 
     return handleResponse(response);
 }
+
+export const getGoogleApiKey = async () => {
+     
+    const url = `${baseUrl}/googleKey`;
+
+    const response = await axios.get(url);
+
+    return handleResponse(response);
+}
