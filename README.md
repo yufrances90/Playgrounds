@@ -11,8 +11,6 @@ Playground is a full-stack application that allows a user to keep track of playg
     > google_api_key: **(Your Google API Key Here)**
     > open_weather_api_key: **(Your Open Weather API Key Here)** 
 
-#### NOTE: YOU MUST PURCHASE **Historical weather collection** FROM OPEN WEATHER TO USE THE **Check Weather** FEATURE
-
 ### Installation
 
 * `git clone` [https://github.com/yufrances90/Playgrounds.git](https://github.com/yufrances90/Playgrounds.git)
@@ -24,4 +22,8 @@ Playground is a full-stack application that allows a user to keep track of playg
 * `npm install`
 * `yarn start`
 
-### Todos
+
+#### Questions
+
+> 1. Why do I get an error when I want to check the weather for past seven days?
+>    Answer: You need to purchase the Starter plan for the Historical Weather Collection in order to access historical data from Open Weather
