@@ -31,7 +31,7 @@ export const createNewPlayground = async (address, name) => {
         name
     });
 
-    handleResponse(response);
+    return handleResponse(response);
 }
 
 export const getAllPlaygrounds = async () => {

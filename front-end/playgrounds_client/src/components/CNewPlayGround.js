@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 
 import {
-    Grid
+    Grid,
+    LinearProgress
 } from '@material-ui/core';
 
 import CAddressForm from './CAddressForm';
+import CGoogleMap from './CGoogleMap';
 
 class CNewPlayground extends Component {
     render() {
 
         const {
-            handleSubmitForm
+            handleSubmitForm,
+            coords,
+            googleApiKey
         } = this.props;
 
         return (
@@ -20,6 +24,16 @@ class CNewPlayground extends Component {
                         <CAddressForm
                             handleSubmitForm={handleSubmitForm}
                         />
+                    </Grid>
+                    <Grid item xs={8}>
+                        {
+                            coords &&
+                            <CGoogleMap
+                                lat={coords.lat}
+                                lng={coords.lng}
+                                googleApiKey={googleApiKey}
+                            />
+                        }
                     </Grid>
                 </Grid>
             </div>

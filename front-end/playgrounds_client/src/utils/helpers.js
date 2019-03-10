@@ -15,7 +15,7 @@ export const formatAddress = (obj) => {
 
 export const handleResponse = (response) => {
 
-    if(response.status === 200) {
+    if(response.status === 200 || response.status === 201) {
         return response.data;
     } else {
 

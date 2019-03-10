@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+import {
+    connect
+} from 'react-redux';
+
 import CNewPlayGround from '../components/CNewPlayGround';
 
 import {
@@ -11,7 +15,11 @@ import {
 
 class PNewPlayground extends Component {
 
-    handleSubmitForm(obj, type) {
+    state = {
+        coords: undefined
+    }
+
+    async handleSubmitForm(obj, type) {
 
         const { name } = obj;
 
@@ -19,19 +27,39 @@ class PNewPlayground extends Component {
 
         console.log(address);
 
-        createNewPlayground(address, name);
+        const data = await createNewPlayground(address, name);
+
+        if (!data) {
+            return;
+        }
+
+        this.setState({
+            coords: data
+        });
     }
 
     render() {
+
+        const { coords } = this.state;
+
+        const { googleApiKey } = this.props;
 
         return (
             <div>
                 <CNewPlayGround
                     handleSubmitForm={this.handleSubmitForm.bind(this)}
+                    coords={coords}
+                    googleApiKey={googleApiKey}
                 />
             </div>
         );
     }
 }
 
-export default PNewPlayground;
+const mapStateToProps = ({ googleApiKey }) => {
+    return {
+        googleApiKey
+    };
+}
+
+export default connect(mapStateToProps)(PNewPlayground);

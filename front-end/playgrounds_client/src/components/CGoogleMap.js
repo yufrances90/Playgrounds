@@ -13,8 +13,6 @@ class CGoogleMap extends Component {
 
         const { lat, lng, googleApiKey, name } = this.props;
 
-        console.log(name);
-
         return (
             <div className="g-map-container">
                 <GoogleMapReact
