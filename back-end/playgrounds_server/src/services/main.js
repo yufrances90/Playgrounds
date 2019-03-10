@@ -82,7 +82,20 @@ const processAndFetchHistoricalData = async ({ id, coord }) => {
         missingDates.length > 0;
 
     if (!shouldFetchNewData) {
-        return response;
+
+        const wData = {};
+
+        dates.forEach(date => {
+            wData[date] = response.weatherData[date]
+        });
+
+        const result = {
+            pgId: response.pgId,
+            dates,
+            weatherData: wData
+        }
+
+        return result;
     }
 
     const startDate = new Date(missingDates[0]);
@@ -135,7 +148,7 @@ const processAndFetchHistoricalData = async ({ id, coord }) => {
 
             dates.forEach(date => {
                 weatherData[date] = updatedWeatherData[date];
-            })
+            });
 
             return {
                 pgId: id,
