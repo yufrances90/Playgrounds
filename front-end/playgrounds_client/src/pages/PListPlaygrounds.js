@@ -4,6 +4,10 @@ import {
     LinearProgress
 } from '@material-ui/core';
 
+import {
+    connect
+} from 'react-redux';
+
 import CListPlaygrounds from '../components/CListPlaygrounds';
 
 import {
@@ -81,6 +85,8 @@ class PListPlaygrounds extends Component {
 
         const { playgrounds, selectedPlayground } = this.state;
 
+        const { googleApiKey } = this.props;
+
         if (playgrounds.length === 0) {
             return <LinearProgress />
         }
@@ -93,6 +99,7 @@ class PListPlaygrounds extends Component {
                     selectedPlayground={selectedPlayground}
                     handleSubmitForm={this.handleSubmitForm.bind(this)}
                     handleDeletePlayground={this.handleDeletePlayground.bind(this)}
+                    googleApiKey={googleApiKey}
                 />
                 
             </div>
@@ -100,4 +107,10 @@ class PListPlaygrounds extends Component {
     }
 }
 
-export default PListPlaygrounds;
+const mapStateToProps = ({ googleApiKey }) => {
+    return {
+        googleApiKey
+    };
+}
+
+export default connect(mapStateToProps)(PListPlaygrounds);

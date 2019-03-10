@@ -38,7 +38,8 @@ class CPlayground extends Component {
         const { 
             selectedPlayground,
             handleSubmitForm,
-            handleDeletePlayground 
+            handleDeletePlayground,
+            googleApiKey 
         } = this.props;
 
         const { open } = this.state;

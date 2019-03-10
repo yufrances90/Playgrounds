@@ -15,7 +15,8 @@ class CListPlaygrounds extends Component {
             setSelectedPlayground, 
             selectedPlayground,
             handleSubmitForm,
-            handleDeletePlayground
+            handleDeletePlayground,
+            googleApiKey
         } = this.props;
 
         return (
@@ -34,6 +35,7 @@ class CListPlaygrounds extends Component {
                                 selectedPlayground={selectedPlayground} 
                                 handleSubmitForm={handleSubmitForm}
                                 handleDeletePlayground={handleDeletePlayground}
+                                googleApiKey={googleApiKey}
                             />
                         }
                     </Grid>
