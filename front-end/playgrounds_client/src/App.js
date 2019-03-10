@@ -5,6 +5,10 @@ import {
     Route
 } from 'react-router-dom';
 
+import {
+    connect
+} from 'react-redux';
+
 import './App.css';
 
 import CNavbar from './components/CNavbar';
@@ -14,28 +18,16 @@ import PWeather from './pages/PWeather';
 import PNear from './pages/PNear';
 
 import {
-    getGoogleApiKey
-} from './utils/apiUtils';
+    handleSetGoogleApiKey
+} from './actions/googleApiKey';
 
 class App extends Component {
 
-    state = {
-        googleApiKey: undefined
-    }
-
-    async componentDidMount() {
-
-        const response = await getGoogleApiKey();
-
-        this.setState({
-            googleApiKey: response["google_api_key"]
-        });
+    componentDidMount() {
+        this.props.dispatch(handleSetGoogleApiKey())
     }
 
     render() {
-
-        const { googleApiKey } = this.state;
-        
         return (
             <div className="App">
                 <CNavbar />
@@ -44,14 +36,20 @@ class App extends Component {
                         <Route 
                             exact 
                             path="/" 
-                            component={() => <PListPlaygrounds googleApiKey={googleApiKey} />} 
+                            component={PListPlaygrounds} 
                         />
                         <Route 
                             path="/create"
-                            component={() => <PNewPlayground googleApiKey={googleApiKey} />} 
+                            component={PNewPlayground} 
                         />
-                        <Route path="/weather" component={PWeather} />
-                        <Route path="/near" component={PNear} />
+                        <Route 
+                            path="/weather" 
+                            component={PWeather} 
+                        />
+                        <Route 
+                            path="/near" 
+                            component={PNear} 
+                        />
                     </Switch>
                 </div>
             </div>
@@ -59,4 +57,10 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = ({ googleApiKey }) => {
+    return {
+        googleApiKey
+    };
+}
+
+export default connect(mapStateToProps)(App);
