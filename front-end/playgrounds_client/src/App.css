@@ -56,3 +56,9 @@
 .pg-table {
     margin: 3em;
 }
+
+.g-map-container {
+    margin: 1em;
+    height: 80vh;
+    width: 100%;
+}

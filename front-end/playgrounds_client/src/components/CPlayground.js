@@ -14,6 +14,7 @@ import {
 } from '@material-ui/icons';
 
 import CAddressModal from './CAddressModal';
+import CGoogleMap from './CGoogleMap';
 
 class CPlayground extends Component {
 
@@ -44,20 +45,27 @@ class CPlayground extends Component {
 
         const { open } = this.state;
 
+        const { 
+            name, 
+            coords,
+            address 
+        } = selectedPlayground;
+        const { lng, lat } = coords;
+
         return (
             <div className="pg-container">
                 <Typography variant="h3">
-                    {selectedPlayground.name}
+                    {name}
                 </Typography>
                 <Divider />
                 <div className="pg-details">
-                <p>
-                        <LocationCity /> {selectedPlayground.address}
+                    <p>
+                        <LocationCity /> {address}
                     </p>
                     <p>
                         <LocationOn /> 
-                        Longitude: {selectedPlayground.coords.lng.toFixed(2)}, 
-                        Latitude: {selectedPlayground.coords.lat.toFixed(2)}
+                        Longitude: {lng.toFixed(2)}, 
+                        Latitude: {lat.toFixed(2)}
                     </p>
                 </div>
                 <Divider />
@@ -87,6 +95,13 @@ class CPlayground extends Component {
                     handleClose={this.handleClose.bind(this)}
                     handleSubmitForm={handleSubmitForm}
                     playground={selectedPlayground}
+                />
+                <Divider />
+                <CGoogleMap 
+                    lng={lng}
+                    lat={lat}
+                    googleApiKey={googleApiKey}
+                    name={name}
                 />
             </div>
         );
