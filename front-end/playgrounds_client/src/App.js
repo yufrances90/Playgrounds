@@ -5,10 +5,6 @@ import {
     Route
 } from 'react-router-dom';
 
-import {
-    connect
-} from 'react-redux';
-
 import './App.css';
 
 import CNavbar from './components/CNavbar';
@@ -17,16 +13,7 @@ import PListPlaygrounds from './pages/PListPlaygrounds';
 import PWeather from './pages/PWeather';
 import PNear from './pages/PNear';
 
-import {
-    handleSetGoogleApiKey
-} from './actions/googleApiKey';
-
 class App extends Component {
-
-    componentDidMount() {
-        this.props.dispatch(handleSetGoogleApiKey())
-    }
-
     render() {
         return (
             <div className="App">
@@ -57,10 +44,4 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = ({ googleApiKey }) => {
-    return {
-        googleApiKey
-    };
-}
-
-export default connect(mapStateToProps)(App);
+export default App;

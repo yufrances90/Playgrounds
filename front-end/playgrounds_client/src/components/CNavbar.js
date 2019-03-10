@@ -17,7 +17,19 @@ import {
     Link
 } from 'react-router-dom';
 
+import {
+    connect
+} from 'react-redux';
+
+import {
+    handleSetGoogleApiKey
+} from '../actions/googleApiKey';
+
 class CNavbar extends Component {
+
+    componentDidMount() {
+        this.props.dispatch(handleSetGoogleApiKey())
+    }
 
     render() {
         return (
@@ -66,4 +78,10 @@ class CNavbar extends Component {
     }
 }
 
-export default CNavbar;
+const mapStateToProps = ({ googleApiKey }) => {
+    return {
+        googleApiKey
+    };
+}
+
+export default connect(mapStateToProps)(CNavbar);
